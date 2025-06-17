@@ -1,47 +1,40 @@
-# Simple HTTP Server – Java Project
+Simple Multithreaded HTTP Server in Java
+This project implements a lightweight, multithreaded HTTP server from scratch using core Java libraries only – without relying on external frameworks.
 
-This project implements a simplified HTTP server in Java as part of an academic software engineering course.  
-It includes a generic server structure with support for parsing HTTP requests, routing based on HTTP method and URI, and dynamic servlet handling.
+It was developed as part of an academic Software Engineering course (פת"מ 1) and received a perfect score (100/100).
 
-## 🧩 Main Components
+Features
+✅ Full implementation of a modular HTTP server from scratch
 
-- *RequestParser* – Parses raw HTTP requests into structured data including:
-  - Method (GET, POST, etc.)
-  - URI segments
-  - Query parameters
-  - Request body content
-- *HTTPServer / MyHTTPServer* – A multithreaded HTTP server supporting servlet registration/removal and background execution.
-- *Servlet* – Defines how each handler responds to client requests based on the parsed request info.
+📡 Supports basic HTTP methods: GET, POST, and DELETE
 
-## ✅ Example Request Handling
+🧩 Custom routing mechanism with longest prefix matching
 
-The server correctly parses requests such as:
+🧵 Multithreaded client handling using a thread pool
 
-GET /api/resource?id=123&name=test HTTP/1.1
-Host: example.com
-Content-Length: 5
+📦 Request parsing with support for URI parameters and request body
 
-filename="hello_world.txt"
+🔌 Easily extendable via the Servlet interface
 
-hello world!
+Structure
+MyHTTPServer.java: The core server class implementing HTTPServer
 
-markdown
+RequestParser.java: Parses raw HTTP requests into structured RequestInfo objects
+
+Servlet.java: Interface for handling HTTP requests
+
+MainTrain.java: Test suite for parsing and server execution
+
+Example Usage
+java
 Copy
 Edit
-
-Extracted results:
-
-- *Parameters*:  
-  - id=123  
-  - name=test  
-  - filename=hello_world.txt
-
-- *Content (body)*:  
-  hello
-
-## 🏆 Grade
-
-*100/100*  
+MyHTTPServer server = new MyHTTPServer(8080, 4);
+server.addServlet("GET", "/api/echo", new EchoServlet());
+server.start();
+✅ Developed by: Roni Ayalon
+🎓 Course: Advanced Software Development (פת"מ 1)
+🏆 Final Grade: 100/100
 Passed all functional and automated tests, including parameter parsing and content accuracy.
 
 ---
